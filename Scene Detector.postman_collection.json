@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "551a1fa4-e822-424c-900c-44ef27116e10",
+		"name": "Scene Detector",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Start Scene Convertor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sourceURL\":\"https://capi.9c9media.com/destinations/tsn_web/platforms/desktop/bond/contents/2263622/contentpackages/4396522/manifest.mpd\",\n    \"destinationKey\":\"jaachuk\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "3.96.130.0:8888/startscenedetection",
+					"host": [
+						"3",
+						"96",
+						"130",
+						"0"
+					],
+					"port": "8888",
+					"path": [
+						"startscenedetection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Content in S3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "35.182.225.172:8080/updatefiles",
+					"host": [
+						"35",
+						"182",
+						"225",
+						"172"
+					],
+					"port": "8080",
+					"path": [
+						"updatefiles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Server Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"response_body_string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "35.183.254.203:8080/health",
+					"host": [
+						"35",
+						"183",
+						"254",
+						"203"
+					],
+					"port": "8080",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
